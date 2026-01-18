@@ -1,33 +1,32 @@
 package com.app.example;
 
-class Point {
-    float x;
-    float y;
-    
-    public Point(float x, float y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-
-class Triangle {
-    Point p1;
-    Point p2;
-    Point p3;
-    Point[] pointList;
-    
-    public Triangle(Point p1, Point p2, Point p3) {
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
-        this.pointList = new Point[3];
-        this.pointList[0] = p1;
-        this.pointList[1] = p2;
-        this.pointList[2] = p3;
-    }
-}
-
 public class TriangleCollision {
+	public static class Point {
+	    float x;
+	    float y;
+	    
+	    public Point(float x, float y) {
+	        this.x = x;
+	        this.y = y;
+	    }
+	}
+	
+	public static class Triangle {
+	    Point p1;
+	    Point p2;
+	    Point p3;
+	    Point[] pointList;
+	    
+	    public Triangle(Point p1, Point p2, Point p3) {
+	        this.p1 = p1;
+	        this.p2 = p2;
+	        this.p3 = p3;
+	        this.pointList = new Point[3];
+	        this.pointList[0] = p1;
+	        this.pointList[1] = p2;
+	        this.pointList[2] = p3;
+	    }
+	}
     
     private static float sign(Point p1, Point p2, Point p3) {
         return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
@@ -138,33 +137,5 @@ public class TriangleCollision {
     // Overloaded method with default parameters
     public static boolean triangleTriangleCollision(Triangle triangle1, Triangle triangle2) {
         return triangleTriangleCollision(triangle1, triangle2, 0.0, true, true);
-    }
-    
-    public static void main(String[] args) {
-        // Test point in triangle
-        Point p1 = new Point(5, 7);
-        Point p2 = new Point(3, 4);
-        Point p3 = new Point(3, 3);
-        
-        Triangle t1 = new Triangle(new Point(2, 2), new Point(5, 6), new Point(10, 0));
-        
-        System.out.println("Point p1 " + (pointInTriangle(p1, t1) ? "is" : "is not") + " in triangle t1");
-        System.out.println("Point p2 " + (pointInTriangle(p2, t1) ? "is" : "is not") + " in triangle t1");
-        System.out.println("Point p3 " + (pointInTriangle(p3, t1) ? "is" : "is not") + " in triangle t1");
-        
-        // Test triangle-triangle collision
-        Triangle tri1 = new Triangle(new Point(3, 6), new Point(6, 5), new Point(6, 7));
-        Triangle tri2 = new Triangle(new Point(4, 2), new Point(1, 5), new Point(6, 4));
-        Triangle tri3 = new Triangle(new Point(3, 12), new Point(9, 8), new Point(9, 12));
-        Triangle tri4 = new Triangle(new Point(3, 10), new Point(5, 9), new Point(5, 13));
-        
-        boolean collision1 = triangleTriangleCollision(tri1, tri2);
-        System.out.println("Triangles t1 and t2 " + (collision1 ? "do" : "do not") + " collide");
-        
-        boolean collision2 = triangleTriangleCollision(tri3, tri4);
-        System.out.println("Triangles t3 and t4 " + (collision2 ? "do" : "do not") + " collide");
-        
-        boolean collision3 = triangleTriangleCollision(tri1, tri3);
-        System.out.println("Triangles t1 and t3 " + (collision3 ? "do" : "do not") + " collide");
     }
 }
